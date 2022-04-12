@@ -7,6 +7,7 @@ import (
 )
 
 func PrintNbrBase(nbr int, base string) {
+	// The base has to be at least 2 characters
 	if len(base) < 2 {
 		fmt.Println("NV")
 	}
@@ -23,11 +24,13 @@ func PrintNbrBase(nbr int, base string) {
 	if stop {
 		fmt.Println("NV")
 	} else {
+		// If the number is negative, we multiply by -1 and later print the '-' sign
 		isNegative := false
 		if nbr < 0 {
 			nbr *= -1
 			isNegative = true
 		}
+		// Make nbr into an int slice by filling up an empty slice with the digits one by one
 		nbrSlice := make([]int, 0)
 		baseSlice := []rune(base)
 		varTemp := nbr
@@ -37,6 +40,7 @@ func PrintNbrBase(nbr int, base string) {
 			varTemp /= len(base)
 			length++
 		}
+		// Putting the integers into the rune slice in reverse order for printing
 		sliceToPrint := make([]rune, length)
 		for index := len(sliceToPrint) - 1; index >= 0; index-- {
 			sliceToPrint[index] = baseSlice[nbrSlice[index]]
